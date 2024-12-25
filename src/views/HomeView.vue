@@ -11,7 +11,7 @@
     </div> -->
 
     <!-- Map Section -->
-    <div class="relative h-96">
+    <div class="relative h-80">
       <!-- <div class="h-48 bg-gray-200"></div>
       <div class="absolute top-4 left-4 bg-white shadow p-2 rounded-md">
         
