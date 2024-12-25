@@ -12,9 +12,8 @@
 
     <!-- Map Section -->
     <div class="relative h-80">
-<<<<<<< HEAD
-      
-=======
+
+
       <!-- <div class="h-48 bg-gray-200"></div>
       <div class="absolute top-4 left-4 bg-white shadow p-2 rounded-md">
         
@@ -23,7 +22,7 @@
       <div class="absolute bottom-4 left-4 bg-white shadow p-2 rounded-md">
         <p class="text-sm">Супермаркет Ашан</p>
       </div> -->
->>>>>>> b08a6cc9e5fc6acc0b15fb9a914bf648f4aab1fa
+
       <l-map
         class="w-full map"
         :zoom="23"
