@@ -12,6 +12,9 @@
 
     <!-- Map Section -->
     <div class="relative h-80">
+<<<<<<< HEAD
+      
+=======
       <!-- <div class="h-48 bg-gray-200"></div>
       <div class="absolute top-4 left-4 bg-white shadow p-2 rounded-md">
         
@@ -20,6 +23,7 @@
       <div class="absolute bottom-4 left-4 bg-white shadow p-2 rounded-md">
         <p class="text-sm">Супермаркет Ашан</p>
       </div> -->
+>>>>>>> b08a6cc9e5fc6acc0b15fb9a914bf648f4aab1fa
       <l-map
         class="w-full map"
         :zoom="23"
@@ -54,94 +58,61 @@
       </div>
 
       <!-- Transport Options -->
-      <div class="mt-4 grid grid-cols-2 gap-2">
-        <button class=" p-2 border rounded-md shadow bg-white ">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2 ">
-              <img src="../assets/car.svg" alt="">
-              <div class="text-lgg">Такси</div>
-            </div>
-            <div>
-                <input type="checkbox" class="h-6 w-6 text-blue-600 rounded focus:ring focus:ring-blue-200" />
-            </div>
-          </div>
-          <div class="grid grid-cols-2 space-x-2 mt-2 w-full">
-            <div class="">
-              <div class="text-start text-xss">Сумма</div>
-              <div class="bg-blue-200 rounded  text-mdd w-full">234 грн</div>
-            </div>
-            <div class="">
-              <div class="text-start text-xss">Время поездки</div>
-              <div class="bg-blue-200 rounded text-mdd w-full">234 грн</div>
-            </div>
-
-          </div>
-        </button>
-
-        <button class=" p-2 border rounded-md shadow my-blue text-white">
-          <div class="flex items-center justify-between space-x-2">
-            <div class="flex items-center space-x-2 ">
-              <img src="../assets/private.svg" alt="">
-              <div class="text-start text-lgg font-semibold">Частный водитель</div>
-            </div>
-            <div>
-                <input type="checkbox" checked class="h-6 w-6 text-blue-600 rounded focus:ring focus:ring-blue-200" />
-            </div>
-          </div>
-          <div class="grid grid-cols-2 space-x-2 mt-2 w-full">
-            <div class="">
-              <div class="text-start text-xss">Сумма</div>
-              <div class="bg-white text-my-blue rounded font-bold text-mdd w-full">234 грн</div>
-            </div>
-            <div class="">
-              <div class="text-start text-xss">Время поездки</div>
-              <div class="bg-white text-my-blue rounded font-bold text-mdd w-full">234 грн</div>
-            </div>
-
-          </div>
-        </button>
-
-        <button class=" p-2 border rounded-md shadow bg-white ">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2 ">
-              <img src="../assets/moto.svg" alt="">
-              <div class="text-lgg">Мотоцикл</div>
-            </div>
-            <div>
-                <input type="checkbox" class="h-6 w-6 text-blue-600 rounded focus:ring focus:ring-blue-200" />
-            </div>
-          </div>
-          <div class="grid grid-cols-2 space-x-2 mt-2 w-full">
-            <div class="">
-              <div class="text-start text-xss">Сумма</div>
-              <div class="bg-blue-200 rounded text-mdd  w-full">234 грн</div>
-            </div>
-            <div class="">
-              <div class="text-start text-xss">Время поездки</div>
-              <div class="bg-blue-200 rounded text-mdd w-full">234 грн</div>
-            </div>
-
-          </div>
-        </button>
-
-        <button class=" p-2 border rounded-md shadow bg-white ">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2 ">
-              <img src="../assets/clock.svg" alt="">
-              <div class="text-lgg">Главное быстро</div>
-            </div>
-            <div>
-                <input type="checkbox" class="h-6 w-6 text-blue-600 rounded focus:ring focus:ring-blue-200" />
-            </div>
-          </div>
-          <div class="grid grid-cols-2 space-x-2 mt-2 w-full">
-            <div class="text-start text-xss"><i>Отметить все виды транспорта</i></div>
-              
-          </div>
-        </button>
-
-        
+      <!-- Transport Options -->
+<div class="mt-4 grid grid-cols-2 gap-2">
+  <button
+    v-for="(option, index) in transportOptions"
+    :key="index"
+    @click="selectOption(index)"
+    :class="[
+      'p-2 border rounded-md shadow',
+      selectedOption === index ? 'my-blue text-white' : 'bg-white'
+    ]"
+  >
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <img :src="option.icon" alt="" />
+        <div :class="selectedOption === index ? 'text-lgg font-semibold' : 'text-lgg'">
+          {{ option.label }}
+        </div>
       </div>
+      <div>
+        <input
+          type="checkbox"
+          :checked="selectedOption === index"
+          class="h-6 w-6 text-blue-600 rounded focus:ring focus:ring-blue-200"
+          readonly
+        />
+      </div>
+    </div>
+    <div v-if="option.details" class="grid grid-cols-2 space-x-2 mt-2 w-full">
+      <div>
+        <div class="text-start text-xss">Сумма</div>
+        <div
+          :class="[
+            'rounded text-mdd w-full',
+            selectedOption === index ? 'bg-white text-my-blue font-bold' : 'bg-blue-200'
+          ]"
+        >
+          {{ option.details.sum }}
+        </div>
+      </div>
+      <div>
+        <div class="text-start text-xss">Время поездки</div>
+        <div
+          :class="[
+            'rounded text-mdd w-full',
+            selectedOption === index ? 'bg-white text-my-blue font-bold' : 'bg-blue-200'
+          ]"
+        >
+          {{ option.details.time }}
+        </div>
+      </div>
+    </div>
+    <div v-else class="text-start text-xss"><i>{{ option.note }}</i></div>
+  </button>
+</div>
+
 
       <div class="mt-3">
           <textarea placeholder="примечания к заказу" class="w-full px-3 py-2 rounded-md text-sm focus:ring focus:ring-blue-200 focus:outline-none"></textarea>
@@ -185,10 +156,38 @@ export default {
   },
   data() {
     return {
+      selectedOption: null,
       tileLayerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       tileLayerAttribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        transportOptions: [
+        {
+          label: "Такси",
+          icon: require("../assets/car.svg"),
+          details: { sum: "234 грн", time: "15 мин" },
+        },
+        {
+          label: "Частный водитель",
+          icon: require( "../assets/private.svg"),
+          details: { sum: "234 грн", time: "15 мин" },
+        },
+        {
+          label: "Мотоцикл",
+          icon: require("../assets/moto.svg"),
+          details: { sum: "234 грн", time: "15 мин" },
+        },
+        {
+          label: "Главное быстро",
+          icon: require("../assets/clock.svg"),
+          note: "Отметить все виды транспорта",
+        },
+      ],
     };
+  },
+  methods: {
+    selectOption(index) {
+      this.selectedOption = index; // Update selected button index
+    },
   },
 };
 </script>
